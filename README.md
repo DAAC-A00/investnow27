@@ -20,6 +20,25 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## **1. 핵심 기술 스택 및 환경**
+
+- **주요 기술:** Next.js & TypeScript
+- **라우터:** App Router 사용 (Pages Router 사용 안 함)
+- 구조 : App Router + 기능 기반 코로케이션 구조 (App 중심의 하이브리드), src/ Dir 사용
+- ESLint 사용
+- **날짜/시간 처리 라이브러리:** Day.js
+
+## **2. UI 및 스타일링**
+
+- **UI 컴포넌트 라이브러리:** Shadcn UI
+- **스타일링 방식:** Tailwind 사용 (`@apply` 디렉티브는 사용하지 않음. 대신 유틸리티 클래스를 직접 조합하거나, `tailwindcss/nesting` 플러그인과 `@layer components`를 사용하여 의미론적인 클래스를 정의)
+- **아이콘 라이브러리:** React Icons
+
+## **3. 상태 관리**
+
+- 아주 단순한 UI상태만 useState 사용.
+- 이외는 모두 Zustand 사용.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -30,7 +49,3 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
