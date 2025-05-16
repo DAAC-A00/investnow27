@@ -30,9 +30,9 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## **2. UI 및 스타일링**
 
-- **UI 컴포넌트 라이브러리:** Shadcn UI
-- **스타일링 방식:** Tailwind 사용 (`@apply` 디렉티브는 사용하지 않음. 대신 유틸리티 클래스를 직접 조합하거나, `tailwindcss/nesting` 플러그인과 `@layer components`를 사용하여 의미론적인 클래스를 정의)
-- **아이콘 라이브러리:** React Icons
+- **UI 컴포넌트 라이브러리:** Material UI (MUI) with Material Design 3
+- **스타일링 방식:** MUI styling solutions (sx prop, styled() API, global theme overrides)
+- **아이콘 라이브러리:** Material Symbols (or Material Icons)
 
 ## **3. 상태 관리**
 
@@ -44,18 +44,18 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 본 프로젝트는 다양한 디바이스 환경(모바일, 태블릿, PC)에서 최적의 사용자 경험을 제공하기 위해 반응형 웹 디자인을 적용합니다.
 
 - **접근 방식:** 모바일 우선(Mobile-First) 접근 방식을 채택합니다.
-- **분기점(Breakpoints):** Tailwind CSS의 기본 분기점 (`sm`, `md`, `lg`, `xl`, `2xl`)을 기준으로 반응형 레이아웃을 구현합니다.
+- **분기점(Breakpoints):** MUI's default breakpoints (or custom breakpoints defined in the theme)을 기준으로 반응형 레이아웃을 구현합니다.
 - **레이아웃:**
-    - 콘텐츠는 유동형 그리드(Fluid Grids)를 사용하여 화면 크기에 따라 유연하게 조절됩니다.
+    - 콘텐츠는 MUI의 Layout components (Grid, Box, Stack, Container etc.)를 사용하여 화면 크기에 따라 유연하게 조절됩니다.
     - 네비게이션, 카드, 테이블, 폼 등의 주요 컴포넌트는 각 화면 크기별 사용성을 고려하여 적절히 변형됩니다.
-        - **모바일:** 간소화된 메뉴 (예: 햄버거 메뉴, 하단 탭), 1열 콘텐츠 레이아웃
-        - **데스크톱:** 확장된 메뉴, 다중 열 콘텐츠 레이아웃
+        - **모바일:** 간소화된 메뉴 (예: Drawer, BottomNavigation), 1열 콘텐츠 레이아웃
+        - **데스크톱:** 확장된 메뉴 (예: persistent Drawer), 다중 열 콘텐츠 레이아웃
 - **이미지 및 미디어:** 화면 크기에 맞춰 비율을 유지하며 조절됩니다 (`max-width: 100%`).
-- **타이포그래피 및 간격:** 가독성을 위해 화면 크기에 따라 글꼴 크기 및 여백이 적절히 조절됩니다.
+- **타이포그래피 및 간격:** 가독성을 위해 화면 크기에 따라 글꼴 크기 및 여백이 적절히 조절됩니다. (MUI Theme and M3 type scale)
 - **터치 친화성:** 모바일 환경에서의 터치 인터랙션을 고려하여 버튼 크기 및 터치 영역을 충분히 확보합니다.
 - **구현:**
-    - 모든 반응형 스타일은 Tailwind CSS의 반응형 접두사(예: `md:`, `lg:`)를 사용하여 구현합니다.
-    - Shadcn UI 컴포넌트를 적극 활용하며, 반응형 요구사항에 맞춰 커스터마이징합니다.
+    - 모든 반응형 스타일은 MUI's responsive utilities and breakpoint syntax (e.g. `sx={{ display: { xs: 'block', md: 'flex' } }}`)를 사용하여 구현합니다.
+    - MUI M3 컴포넌트를 적극 활용하며, 반응형 요구사항에 맞춰 커스터마이징합니다.
 
 ## Learn More
 

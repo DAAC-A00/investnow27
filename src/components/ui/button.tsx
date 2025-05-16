@@ -3,32 +3,41 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/lib/utils" // 경로 수정
+import { cn } from "@/lib/utils" 
 
+// Material Design 3 Button Styles (Dark Theme)
 const buttonVariants = cva(
-  // 기본 스타일: 모바일 우선으로 폰트 크기 및 공통 스타일 정의
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive md:text-base", // md 이상에서 기본 텍스트 크기 증가
+  // Base style: Common to all buttons
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors duration-150 ease-in-out ",
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+        // Filled Button (Primary Action)
+        default: 
+          "bg-sky-500 text-neutral-950 hover:bg-sky-600 disabled:bg-neutral-700 disabled:text-neutral-500",
+        // Outlined Button
+        outline: 
+          "border border-neutral-600 text-sky-400 hover:bg-sky-400/10 hover:border-sky-400 disabled:border-neutral-700 disabled:text-neutral-500",
+        // Text Button
+        ghost: 
+          "text-sky-400 hover:bg-sky-400/10 disabled:text-neutral-500",
+        // Elevated Button (using secondary as base)
+        secondary: 
+          "bg-neutral-800 text-sky-400 hover:bg-neutral-700/80 shadow-md disabled:bg-neutral-800/50 disabled:text-neutral-500",
+        // Tonal Button (can be a new variant or adapt an existing one)
+        tonal: 
+          "bg-sky-700/30 text-sky-200 hover:bg-sky-700/40 disabled:bg-neutral-800/50 disabled:text-neutral-500", 
+        destructive: // Destructive Filled Button
+          "bg-red-600 text-white hover:bg-red-700 disabled:bg-neutral-700 disabled:text-neutral-500",
+        link: // Link style (typically for inline text links, not standalone buttons)
+          "text-sky-400 underline-offset-4 hover:underline hover:text-sky-300",
       },
       size: {
-        // 모바일 우선 (기본값) -> sm: -> md: 순으로 정의
-        default: "h-10 px-4 py-2 md:h-11 md:px-5 has-[>svg]:px-3 md:has-[>svg]:px-3.5", // 기본 높이 10, md에선 11, 패딩 조절
-        sm: "h-9 px-3 rounded-md md:h-10 md:px-3.5 has-[>svg]:px-2.5 md:has-[>svg]:px-3", // 작은 버튼 높이 9, md에선 10
-        lg: "h-11 px-8 rounded-md text-base md:h-12 md:px-8 md:text-lg has-[>svg]:px-6 md:has-[>svg]:px-7", // 큰 버튼 높이 11, md에선 12, 텍스트 크기 증가
-        icon: "size-10 md:size-11", // 아이콘 버튼 크기 10, md에선 11
+        // MD3: Height for buttons is typically 40dp (h-10)
+        default: "h-10 px-6 py-2", // Label text: 14sp (text-sm)
+        sm: "h-8 px-4 rounded-full", // Smaller buttons like icon buttons or compact ones
+        lg: "h-12 px-8 py-3 text-base", // Larger call to action
+        icon: "size-10 rounded-full flex items-center justify-center", // For Icon Buttons
       },
     },
     defaultVariants: {
@@ -37,6 +46,10 @@ const buttonVariants = cva(
     },
   }
 )
+
+// Focus-visible states for Material Design (can be added to base or per variant)
+// Example: focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950
+// Add to base: "... focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-1 focus-visible:ring-offset-neutral-950"
 
 function Button({
   className,
@@ -49,11 +62,11 @@ function Button({
     asChild?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
-
+  // Add common focus visible style to all buttons
+  const focusClasses = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-1 focus-visible:ring-offset-neutral-950";
   return (
     <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, className }), focusClasses)}
       {...props}
     />
   )
